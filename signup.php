@@ -11,8 +11,6 @@
         $password = $_POST["password"];
         $displayName = $_POST["displayName"];
 
-        echo $displayName."<br>".$username."<br>".$password."<br>";
-
         //ENCRYPT PASSWORD
         $hash = "$2y$10$";
         $salt = "l9asia5oanfv8no1aieh6a";
