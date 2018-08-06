@@ -110,7 +110,7 @@
         <div class="select-group">
           <div class="grey-text pad-top-5">Crate Size: </div>
             <select id="selectedCrateSize" class="select-box">
-                  <option>Select</option>
+                  <option></option>
                   <option>42"x54"x12"</option>
                   <option>78"x54"x12"</option>
                   <option>102"x54"x12"</option>
