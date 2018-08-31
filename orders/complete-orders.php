@@ -45,6 +45,15 @@
     <title>IGT Order Application</title>
   </head>
   <body>
+    <div class="container-fluid top-toolbar">
+      <div>
+          <label for="clear-buttons" class="pad-1">Clear Packing List</label>
+          <a class="btn btn-primary" href="functions.php?clear=indoff">Indoff</a>
+          <a class="btn btn-primary" href="functions.php?clear=mv">MV</a>
+          <a class="btn btn-primary" href="functions.php?clear=general">General</a>
+          <a class="btn btn-danger float-right" href="../logout.php">Log Out</a>
+        </div>
+    </div>
     <header>
       <div class="center">
         <img src="img/igt-america-logo-horiz.svg" />

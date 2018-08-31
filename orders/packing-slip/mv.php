@@ -40,8 +40,8 @@
             <div class="col-2 address-2">
               <p><small class="red-text">Shipping To</small></p>
                 <p><span class="address-head">Magna Visual</span></p>
-                <p>9400 Watson Road</p>
-                <p>St. Louis, Missouri 63126</p>
+                <p>28271 Cedar Park Blvd.</p>
+                <p>Perrysburg, OH 43551</p>
             </div>
         </div>
         <div class="row">

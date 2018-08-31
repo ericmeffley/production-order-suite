@@ -38,10 +38,10 @@
     <!-- Top toolbar to dock buttons -->
     <div class="container-fluid top-toolbar">
       <div>
-          <label for="clear-buttons" class="pad-1">Clear Packing List</label>
-          <a class="btn btn-primary" href="functions.php?clear=indoff">Indoff</a>
+          <label for="clear-buttons" class="pad-1"><span style="color:lightgrey;">-</span></label>
+          <!-- <a class="btn btn-primary" href="functions.php?clear=indoff">Indoff</a>
           <a class="btn btn-primary" href="functions.php?clear=mv">MV</a>
-          <a class="btn btn-primary" href="functions.php?clear=general">General</a>
+          <a class="btn btn-primary" href="functions.php?clear=general">General</a> -->
           <a class="btn btn-danger float-right" href="../logout.php">Log Out</a>
         </div>
         
