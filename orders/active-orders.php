@@ -13,7 +13,7 @@
     orderComplete();
     header("Location:active-orders.php");
   }
-  if(isset($_GET['clear']))
+  //if(isset($_GET['clear']))
 ?>
 
 <!doctype html>
@@ -30,9 +30,9 @@
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,600" rel="stylesheet"> 
 
     <!-- Local CSS -->
-    <link rel="stylesheet" href="css/main.css?v=1.20">
+    <link rel="stylesheet" href="css/main.css?v=1.27">
 
-    <title>IGT Order Application</title>
+    <title>IGT Order Suite</title>
   </head>
     <body>
     <!-- Top toolbar to dock buttons -->
@@ -52,28 +52,19 @@
           <img src="img/igt-america-logo-horiz.svg" />
         </div>
       </header>
-      <ul class="nav nav-tabs">
+      <ul class="nav nav-pills em-nav">
         <li class="nav-item">
-          <a class="nav-link active" href="index.php">Active Orders</a>
+          <a class="nav-link em-nav-link active" href="index.php">Active Orders</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="complete-orders.php">Completed Orders</a>
+          <a class="nav-link em-nav-link" href="complete-orders.php">Completed Orders</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="packing-slip/indoff.php" target="_blank">Indoff Packing Slip</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="packing-slip/mv.php" target="_blank">MV Packing Slip</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="order-archive.php" target="_blank">Order Archive</a>
-        </li>
-        <li class="nav-item">
-          
+          <a class="nav-link em-nav-link" href="order-archive.php">Order Archive</a>
         </li>
       </ul>
     <section class="container-fluid">
-      <table class='table'>
+      <table class='table table-hover'>
         <thead  class="thead-dark">
           <tr>
             <!-- <th>Line</th> -->
@@ -86,10 +77,10 @@
             <th class="border-top-0">Ordered</th>
             <th class="border-top-0">Due Date</th>
             <th class="border-top-0">Description</th>
-            <th class="border-top-0"></th>
+            <th class="border-top-0 icon-col-header">Done</th>
           </tr>
           </thead>
-          <tbody>
+          <tbody class="table-striped">
             <?php
               //Query orders
               $result = $conn->query("SELECT * FROM active_orders ORDER BY due_date ASC");
@@ -111,7 +102,11 @@
                   echo "<td>".$row[8]."</td>";
                   echo "<td>".$row[9]."</td>";
                   echo "<td>".$row[10]."</td>";                  
-                  echo "<td><a href='active-orders.php?done=1&ordNo={$ordNumber}&lineNo={$lineNumber}' class='igt-btn btn-text'>Done</a></td>";
+                  echo "<td class='icon icon-col'>
+                            <a href='active-orders.php?done=1&ordNo={$ordNumber}&lineNo={$lineNumber}' title='Order Complete'>
+                              <img src='img/done-icon.svg' width='35' style='margin-left:50;'>
+                            </a>
+                        </td>";
                   echo "</tr>";
 
               }

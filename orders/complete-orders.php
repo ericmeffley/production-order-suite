@@ -40,9 +40,9 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,600" rel="stylesheet">
     <!-- Local CSS -->
-    <link rel="stylesheet" href="css/main.css?v=1.10">
+    <link rel="stylesheet" href="css/main.css?v=1.16">
 
-    <title>IGT Order Application</title>
+    <title>IGT Order Suite</title>
   </head>
   <body>
     <div class="container-fluid top-toolbar">
@@ -59,25 +59,28 @@
         <img src="img/igt-america-logo-horiz.svg" />
       </div>
     </header>
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-pills em-nav">
       <li class="nav-item">
-        <a class="nav-link" href="index.php">Active Orders</a>
+        <a class="nav-link em-nav-link" href="index.php">Active Orders</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active">Completed Orders</a>
+        <a class="nav-link em-nav-link active">Completed Orders</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="packing-slip/indoff.php" target="_blank">Indoff Packing Slip</a>
+        <a class="nav-link em-nav-link" href="order-archive.php">Order Archive</a>
       </li>
-      <li class="nav-item">
-          <a class="nav-link" href="packing-slip/mv.php" target="_blank">MV Packing Slip</a>
-        </li>
-      <li class="nav-item">
-          <a class="nav-link" href="order-archive.php" target="_blank">Order Archive</a>
-        </li>
+      <!-- Dropdown List -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle em-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Packing Lists</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="packing-slip/indoff.php" target="_blank">Indoff</a>
+          <a class="dropdown-item" href="packing-slip/mv.php" target="_blank">Magna Visual</a>
+          <a class="dropdown-item" href="packing-slip/general-ps.php" target="_blank">General</a>
+        </div>
+      </li>
     </ul>
     <section class="container-fluid">
-      <table class='table border-top-0'>
+      <table class='table border-top-0 table-hover'>
         <thead class="thead-dark">
           <tr>
             <th class="border-top-0">Line</th>
@@ -90,9 +93,9 @@
             <th class="border-top-0">Ordered</th>
             <th class="border-top-0">Due Date</th>
             <th class="border-top-0">Description</th>
-            <th class="border-top-0"></th>
-            <th class="border-top-0"></th>
-            <th class="border-top-0"></th>
+            <th class="border-top-0 icon-col-header" >Pack</th>
+            <th class="border-top-0 icon-col-header">Restore</th>
+            <th class="border-top-0 icon-col-header">Archive</th>
           </tr>
           </thead>
           <tbody>
@@ -126,9 +129,22 @@
                       echo "<td>".$row[9]."</td>";
                       echo "<td>".$row[10]."</td>";                  
                       
-                      echo "<td><a href='complete-orders.php?pack=1&ordNo={$ordNumber}&lineNo={$lineNumber}&custNo={$customer}' class='btn btn-text'>Pack</a></td>";
-                      echo "<td><a href='complete-orders.php?restore=1&ordNo={$ordNumber}&lineNo={$lineNumber}' class='btn btn-text'>Restore</a></td>";
-                      echo "<td><a href='complete-orders.php?archive=1&ordNo={$ordNumber}&lineNo={$lineNumber}&custNo={$customer}' class='btn btn-text'>Archive</a></td>";
+                      echo "<td class='icon icon-col'>
+                              <a href='complete-orders.php?pack=1&ordNo={$ordNumber}&lineNo={$lineNumber}&custNo={$customer}' title='Pack Order'>
+                                <img src='img/pack-icon.svg' width='35' >
+                              </a>
+                            </td>";
+                      echo "<td class='icon icon-col'>
+                              <a href='complete-orders.php?restore=1&ordNo={$ordNumber}&lineNo={$lineNumber}' title='Restore Order'>
+                                <img src='img/restore-icon.svg' width='35'>
+                              </a>
+                            </td>";
+
+                      echo "<td class='icon icon-col'>
+                              <a href='complete-orders.php?archive=1&ordNo={$ordNumber}&lineNo={$lineNumber}&custNo={$customer}' title='Archive Order'>
+                                <img src='img/archive-icon.svg' width='35'>
+                              </a>
+                            </td>";
                     echo "</tr>";
                 }
               }

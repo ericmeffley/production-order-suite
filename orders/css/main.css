@@ -62,37 +62,57 @@ h1{
     font-family: cursive;
 }
 header img{
-    width: 65%;
-    padding-left: 35%;
-}
-.nav-link{
-    font-size: 1em;
-    font-weight: 200;
-    padding: 20px;
+    width: 60%;
+    padding-left: 37.5%;
 }
 
+/* TABLE */
 table{
     font-weight: 300;
     font-size: .9rem;
-    margin-top: 30px;
 }
 table tr:nth-child(even){
-    background: #f5f5f5;
+    background: #fafafa;
+}
+
+.table td, .table th {
+    vertical-align: middle;
+    /* border-top: none; */
 }
 
 td {
     line-height: 1.5rem;
 }
 
+table tbody td.icon-col {
+    text-align: center;
+}
+
+tr td.icon{
+    padding: .25rem;
+}
+
+/* Eric's nav adjustments */
+.em-nav{
+    padding:.25rem;
+}
+
+.em-nav-link{
+    font-size: 1em;
+    font-weight: 200;
+    padding: 1rem;
+    margin-top: .5rem;
+}
+
+.icon-col-header{
+    width: 75px;
+    text-align: center;
+}
+
 
 footer{
     border-top: 2px solid #003D6A;
 }
-
-tr td{
-    padding-left: 50px;
-}
-
 
 .footer {
     position: absolute;

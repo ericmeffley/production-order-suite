@@ -16,6 +16,12 @@ include_once("config/db.php");
                 echo '<script>if(confirm("Magna Visual slip has been cleared")) document.location = "index.php"</script>';
             }
         }
+
+        if($clearSlip == "general"){
+            if($stmt = $conn->query('TRUNCATE TABLE general_packing_slip')){
+                echo '<script>if(confirm("Gerneral packing slip has been cleared")) document.location = "index.php"</script>';
+            }
+        }
         
     }
 
@@ -42,41 +48,60 @@ include_once("config/db.php");
         $move_stmt->bindParam(':lineNum', $line_number);
         $move_stmt->execute();
         $result = $move_stmt->fetch();
-        //print_r($result);
 
-        //Insert done order into completed orders table
-        $insert_stmt = $conn->query("INSERT INTO `completed_orders` (`line_number`, `item`, `reference`, `quantity`, `order_number`, `purchase_order`, `customer_number`, `created_at`, `due_date`, `description`) VALUES('$result[1]','$result[2]','$result[3]','$result[4]','$result[5]','$result[6]','$result[7]','$result[8]','$result[9]','$result[10]')");
-
-
-        //Delete active orders from table
-        $delete_stmt = $conn->prepare("DELETE FROM active_orders WHERE order_number=(:orderNum) and line_number=(:lineNum)");
-        $delete_stmt->bindParam(':orderNum', $order_number);
-        $delete_stmt->bindParam(':lineNum', $line_number);
-        $delete_stmt->execute();  
+        if($result[2] == "SHEAR"){
+            $insert_stmt = $conn->query("INSERT INTO `archived_orders` (`line_number`, `item`, `reference`, `quantity`, `order_number`, `purchase_order`, `customer_number`, `created_at`, `due_date`, `description`) VALUES('$result[1]','$result[2]','$result[3]','$result[4]','$result[5]','$result[6]','$result[7]','$result[8]','$result[9]','$result[10]')");
+        } else {
+            //Insert done order into completed orders table
+            $insert_stmt = $conn->query("INSERT INTO `completed_orders` (`line_number`, `item`, `reference`, `quantity`, `order_number`, `purchase_order`, `customer_number`, `created_at`, `due_date`, `description`) VALUES('$result[1]','$result[2]','$result[3]','$result[4]','$result[5]','$result[6]','$result[7]','$result[8]','$result[9]','$result[10]')");
+        }
+            //Delete active orders from table
+            $delete_stmt = $conn->prepare("DELETE FROM active_orders WHERE order_number=(:orderNum) and line_number=(:lineNum)");
+            $delete_stmt->bindParam(':orderNum', $order_number);
+            $delete_stmt->bindParam(':lineNum', $line_number);
+            $delete_stmt->execute(); 
     }
 
     function restoreOrder(){
         global $conn;
+        $restore = $_GET['restore'];
         $order_number = $_GET['ordNo'];
         $line_number = $_GET['lineNo'];
         $row = array();
         
-        //Copy order to completed orders table
-        $move_stmt = $conn->prepare("SELECT * FROM completed_orders WHERE order_number=(:orderNum) && line_number=(:lineNum)");
-        $move_stmt->bindParam(':orderNum', $order_number);
-        $move_stmt->bindParam(':lineNum', $line_number);
-        $move_stmt->execute();
-        $result = $move_stmt->fetch();
-
-        //Insert done order into completed orders table
+        if ($restore == "2"){
+            //Copy order from archive orders table
+            $move_stmt = $conn->prepare("SELECT * FROM archived_orders WHERE order_number=(:orderNum) && line_number=(:lineNum)");
+            $move_stmt->bindParam(':orderNum', $order_number);
+            $move_stmt->bindParam(':lineNum', $line_number);
+            $move_stmt->execute();
+            $result = $move_stmt->fetch();
+        } else {
+            //Copy order to from completed orders table
+            $move_stmt = $conn->prepare("SELECT * FROM completed_orders WHERE order_number=(:orderNum) && line_number=(:lineNum)");
+            $move_stmt->bindParam(':orderNum', $order_number);
+            $move_stmt->bindParam(':lineNum', $line_number);
+            $move_stmt->execute();
+            $result = $move_stmt->fetch();
+        }
+        
+        //Insert row into active orders table
         $insert_stmt = $conn->query("INSERT INTO `active_orders` (`line_number`, `item`, `reference`, `quantity`, `order_number`, `purchase_order`, `customer_number`, `created_at`, `due_date`, `description`) VALUES('$result[1]','$result[2]','$result[3]','$result[4]','$result[5]','$result[6]','$result[7]','$result[8]','$result[9]','$result[10]')");
 
-
-        //Delete active orders from table
-        $delete_stmt = $conn->prepare("DELETE FROM completed_orders WHERE order_number=(:orderNum) and line_number=(:lineNum)");
-        $delete_stmt->bindParam(':orderNum', $order_number);
-        $delete_stmt->bindParam(':lineNum', $line_number);
-        $delete_stmt->execute();  
+        if ($restore == "2"){
+            //Delete row from archived orders table
+            $delete_stmt = $conn->prepare("DELETE FROM archived_orders WHERE order_number=(:orderNum) and line_number=(:lineNum)");
+            $delete_stmt->bindParam(':orderNum', $order_number);
+            $delete_stmt->bindParam(':lineNum', $line_number);
+            $delete_stmt->execute();  
+        } else {
+            //Delete row from completed orders table
+            $delete_stmt = $conn->prepare("DELETE FROM completed_orders WHERE order_number=(:orderNum) and line_number=(:lineNum)");
+            $delete_stmt->bindParam(':orderNum', $order_number);
+            $delete_stmt->bindParam(':lineNum', $line_number);
+            $delete_stmt->execute();  
+        }
+        
     }
 
     function archiveOrder(){

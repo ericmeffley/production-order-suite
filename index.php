@@ -112,7 +112,7 @@
                     <form method="post" action="" class="login-form">
                         <div class="form-group">
                             <label for="username"><strong>Email</strong></label>
-                            <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp" placeholder="Email">
+                            <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp" placeholder="Email" autofocus>
                         </div>
                         <div class="form-group">
                             <label><strong>Password</strong></label>

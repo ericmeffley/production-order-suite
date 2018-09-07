@@ -3,11 +3,11 @@
   include_once("config/db.php");
   include_once('functions.php');
                  
-  // Order Complete Query
-    // if(isset($_GET['restore'])){
-    //   restoreOrder();
-    //   header("Location:complete-orders.php");
-    // }
+  //Order Complete Query
+    if(isset($_GET['restore'])){
+      restoreOrder();
+      //header("Location:order-archive.php");
+    }
 
     // if(isset($_GET['pack'])){
     //   addToPackingList();
@@ -28,32 +28,35 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,600" rel="stylesheet">
     <!-- Local CSS -->
-    <link rel="stylesheet" href="css/main.css?v=1.10">
+    <link rel="stylesheet" href="css/main.css?v=1.13">
 
-    <title>IGT Order Application</title>
+    <title>IGT Order Suite</title>
   </head>
   <body>
+  <div class="container-fluid top-toolbar">
+      <div>
+          <label for="clear-buttons" class="pad-1"><span style="color:lightgrey;">-</span></label>
+          <a class="btn btn-danger float-right" href="../logout.php">Log Out</a>
+        </div>
+    </div>
     <header>
       <div class="center">
         <img src="img/igt-america-logo-horiz.svg" />
       </div>
     </header>
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-pills em-nav">
       <li class="nav-item">
-        <a class="nav-link" href="index.php">Active Orders</a>
+        <a class="nav-link em-nav-link" href="index.php">Active Orders</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="complete-orders.php">Completed Orders</a>
+        <a class="nav-link em-nav-link" href="complete-orders.php">Completed Orders</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="packing-slip/indoff.php" target="_blank">Indoff Packing Slip</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" href="order-archive.php" target="_blank">Order Archive</a>
+        <a class="nav-link em-nav-link active">Order Archive</a>
       </li>
     </ul>
     <section class="container-fluid">
-      <table class='table border-top-0'>
+      <table class='table border-top-0 table-hover'>
         <thead class="thead-dark">
           <tr>
             <th class="border-top-0">Line</th>
@@ -66,6 +69,7 @@
             <th class="border-top-0">Ordered</th>
             <th class="border-top-0">Due Date</th>
             <th class="border-top-0">Description</th>
+            <th class="border-top-0 icon-col-header">Restore</th>
           </tr>
           </thead>
           <tbody>
@@ -96,7 +100,11 @@
                       echo "<td>".$row[7]."</td>";
                       echo "<td>".$row[8]."</td>";
                       echo "<td>".$row[9]."</td>";
-                      echo "<td>".$row[10]."</td>";                  
+                      echo "<td>".$row[10]."</td>";
+                      echo "<td class='icon icon-col'><a href='order-archive.php?restore=2&ordNo={$ordNumber}&lineNo={$lineNumber}'>
+                                  <img src='img/restore-icon.svg' width='35'>
+                                </a>
+                            </td>";                  
                     echo "</tr>";
                 }
               }
