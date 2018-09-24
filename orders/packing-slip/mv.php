@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,600" rel="stylesheet"> 
 
     <!-- Local CSS -->
-    <link rel="stylesheet" href="../css/packing-slip.css?v=1.13">
+    <link rel="stylesheet" href="../../css/packing-slip.css?v=1.14">
 
     <title>IGT Order Application</title>
   </head>

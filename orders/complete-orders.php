@@ -33,53 +33,53 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,600" rel="stylesheet">
+    <!-- Web Fonts--> 
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300|Raleway:500" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"> 
     <!-- Local CSS -->
-    <link rel="stylesheet" href="css/main.css?v=1.16">
+    <link rel="stylesheet" href="../css/main.css?v=<?php echo time() ?>">
 
-    <title>IGT Order Suite</title>
+    <title>IGT Production Suite</title>
   </head>
   <body>
-    <div class="container-fluid top-toolbar">
+    <section class="top-toolbar">
       <div>
-          <label for="clear-buttons" class="pad-1">Clear Packing List</label>
-          <a class="btn btn-primary" href="functions.php?clear=indoff">Indoff</a>
-          <a class="btn btn-primary" href="functions.php?clear=mv">MV</a>
-          <a class="btn btn-primary" href="functions.php?clear=general">General</a>
-          <a class="btn btn-danger float-right" href="../logout.php">Log Out</a>
+          <label for="clear-buttons">Clear Packing List >></label>
+          <a class="btn btn-primary inline-btn btn-round" href="functions.php?clear=indoff">Indoff</a>
+          <a class="btn btn-primary inline-btn" href="functions.php?clear=mv">MV</a>
+          <a class="btn btn-primary inline-btn" href="functions.php?clear=general">General</a>
+          <a class="btn btn-secondary float-right" href="../logout.php">Log Out</a>
         </div>
-    </div>
-    <header>
-      <div class="center">
-        <img src="img/igt-america-logo-horiz.svg" />
-      </div>
-    </header>
-    <ul class="nav nav-pills em-nav">
+    </section>
+    <section class="header">
+      <img class="header-logo" src="img/igt-america-logo-horiz.svg" />
+    </section>
+
+    <!-- Navbar section -->
+    <ul class="nav">
       <li class="nav-item">
-        <a class="nav-link em-nav-link" href="index.php">Active Orders</a>
+        <a class="nav-link" href="index.php">Active Orders</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link em-nav-link active">Completed Orders</a>
+        <a class="nav-link active">Completed Orders</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link em-nav-link" href="order-archive.php">Order Archive</a>
+        <a class="nav-link" href="order-archive.php">Order Archive</a>
       </li>
-      <!-- Dropdown List -->
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle em-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Packing Lists</a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="packing-slip/indoff.php" target="_blank">Indoff</a>
-          <a class="dropdown-item" href="packing-slip/mv.php" target="_blank">Magna Visual</a>
-          <a class="dropdown-item" href="packing-slip/general-ps.php" target="_blank">General</a>
-        </div>
+      <li class="nav-item">
+        <div class="dropdown">
+          <a class="nav-link"><i class="fas fa-sort-down fa-lg"></i>&nbsp;Packing Slips</a>
+          <div class="dropdown-content">
+            <a href="packing-slip/indoff.php" target="_blank">Indoff</a>
+            <a href="packing-slip/mv.php" target="_blank">Magna Visual</a>
+            <a href="packing-slip/other.php" target="_blank">Other</a>
+          </div>
+        </div> 
       </li>
     </ul>
-    <section class="container-fluid">
+    <!-- Table data display -->
+    <section class="container-wide">
       <table class='table border-top-0 table-hover'>
         <thead class="thead-dark">
           <tr>
@@ -131,18 +131,18 @@
                       
                       echo "<td class='icon icon-col'>
                               <a href='complete-orders.php?pack=1&ordNo={$ordNumber}&lineNo={$lineNumber}&custNo={$customer}' title='Pack Order'>
-                                <img src='img/pack-icon.svg' width='35' >
+                              <i class='fas fa-truck fa-lg'></i>
                               </a>
                             </td>";
                       echo "<td class='icon icon-col'>
                               <a href='complete-orders.php?restore=1&ordNo={$ordNumber}&lineNo={$lineNumber}' title='Restore Order'>
-                                <img src='img/restore-icon.svg' width='35'>
+                              <i class='far fa-window-restore fa-lg'></i>
                               </a>
                             </td>";
 
                       echo "<td class='icon icon-col'>
                               <a href='complete-orders.php?archive=1&ordNo={$ordNumber}&lineNo={$lineNumber}&custNo={$customer}' title='Archive Order'>
-                                <img src='img/archive-icon.svg' width='35'>
+                              <i class='fas fa-archive fa-lg'></i>
                               </a>
                             </td>";
                     echo "</tr>";

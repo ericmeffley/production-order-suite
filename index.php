@@ -16,17 +16,17 @@
     }else{
     
         if (isset($_POST['submit'])){
-            //STORE ENTERED USERNAME AND PASSWORD
+            //Store Entered Username And Password
             $enteredPassword = $_POST['password'];
             $enteredUsername = $_POST['username'];
 
-            //ENCRYPT PASSWORD
+            //Encrypt Password
             $hash = "$2y$10$";
             $salt = "l9asia5oanfv8no1aieh6a";
             $hash_and_salt = $hash.$salt;
             $enteredPassword = crypt($enteredPassword,$hash_and_salt);
 
-            //QUERY USERNAME
+            //Query Username
             if($stmt = $conn->prepare("SELECT id, username FROM `users` WHERE username = ?")){
                 $stmt->bindParam("1", $enteredUsername);
                 $stmt->execute();
@@ -37,9 +37,9 @@
                 $error = '<div class="alert alert-warning">Query Failed, Please try again.</div';
             }
             
-            //IF USERNAME MATCH
+            //If Username Match
             if($enteredUsername == $userName[1]){
-                //QUERY PASSWORD
+                //Query Password
                 if($pass_stmt = $conn->prepare("SELECT username, password, displayname FROM `users` WHERE password = ? AND username = ?")){
                     $pass_stmt->bindParam("1", $enteredPassword);
                     $pass_stmt->bindParam("2", $enteredUsername);
@@ -50,7 +50,7 @@
                 }
                 
                 if($enteredPassword == $password[1]){
-                    //IF PASSWORDS MATCH    
+                    //If Passwords Match    
                     $_SESSION['displayname'] = $displayName;
                     $_SESSION['username'] = $userName;
                     $_SESSION['id'] = $id;
@@ -77,16 +77,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.css">
-    
-      
      <!-- Web Fonts--> 
-    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet"> 
-    
+     <link href="https://fonts.googleapis.com/css?family=Montserrat:300|Raleway:300,500" rel="stylesheet"> 
     <!-- Local CSS-->
-    <link rel="stylesheet" type="text/css" href="css/styles.css?=1.18">
+    <link rel="stylesheet" type="text/css" href="css/main.css?=<?php echo time(); ?>">
    
   </head>
 
@@ -94,46 +88,44 @@
 
     <div id="error"><?php echo $error; ?></div>
     
-    <header>
-        <div class="row">
-            <div class="col">
-                <p class="login-headline">IGT Production Suite</p>
-            </div>
-        </div>
+    <header class="container header">
+        
     </header>
 
-        <section class="container">
-           <div class="login-box">
-            <h2 style="text-align:center;color:#559cd6">Log In</h2>
-
-            <div class="row">
-                <div class="col-2"></div>
-                <div class="col-8">
-                    <form method="post" action="" class="login-form">
-                        <div class="form-group">
-                            <label for="username"><strong>Email</strong></label>
-                            <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp" placeholder="Email" autofocus>
-                        </div>
-                        <div class="form-group">
-                            <label><strong>Password</strong></label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-                        </div>
-                        <button type="submit" name="submit" class="btn btn-primary">Login</button>
-                        <span class="signup-link"><a href="signup.php" class="signup">Signup</a></span>
-                        <span class="signup-link"><a href="reset_request.php" class="signup" style="float:right">Forgot Password</a></span>
-                    </form>
+    <section class="container">
+        <div class="row">
+            <img class="login-header-logo" src="img/igt-america-logo.svg"/>
+            <p class="heading-md text-center text-color-primary">Production Suite</p>
+            <div class="login-box">
+            <p class="heading-sm text-center text-lt-blue ">Log In</p>
+            <form method="post" action="">
+                <div class="row">
+                    <div>
+                        <!-- <label for="username"><strong>Email</strong></label> -->
+                        <input type="text" id="username" name="username" aria-describedby="emailHelp" placeholder="Email" autofocus>
+                    </div>
+                    <div>
+                        <!-- <label><strong>Password</strong></label> -->
+                        <input type="password" id="password" name="password" placeholder="Password">
+                    </div>
                 </div>
-                <div class="col-2"></div>
+                <div class="vh-2"></div>
+                <div class="row">
+                    <button type="submit" name="submit" class="btn btn-primary">Login</button>
+                    <a href="signup.php" class="btn btn-link">Signup</a>
+                    <!-- <a href="reset_request.php" class="btn btn-link" style="float:right;margin-top:10px;">Forgot Password</a> -->
+                </div>
+            </form>
             </div>
-    </div>
-        </section>
+        </div>
+    </section>
  
 
-    <div class="footer">
-        <div class="container footer-content">
-            <p>&copy;<?php echo date('Y'); ?>&nbsp;The Meffley Company L.L.C.</p>
+    <footer class="footer">
+        <div class="container">
+            <p class="text-center">&copy;<?php echo date('Y'); ?>&nbsp;IGT America Inc.</p>
         </div>  
-    </div>
+    </footer>
     
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>

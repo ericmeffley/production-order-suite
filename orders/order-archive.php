@@ -22,37 +22,35 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,600" rel="stylesheet">
+    <!-- Web Fonts--> 
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300|Raleway:500" rel="stylesheet"> 
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">   
     <!-- Local CSS -->
-    <link rel="stylesheet" href="css/main.css?v=1.13">
+    <link rel="stylesheet" href="../css/main.css?v=<?php echo time(); ?>">
 
-    <title>IGT Order Suite</title>
+    <title>IGT Production Suite</title>
   </head>
   <body>
-  <div class="container-fluid top-toolbar">
+  <div class="container-wide top-toolbar">
       <div>
-          <label for="clear-buttons" class="pad-1"><span style="color:lightgrey;">-</span></label>
-          <a class="btn btn-danger float-right" href="../logout.php">Log Out</a>
+          <a class="btn btn-secondary float-right" href="../logout.php">Log Out</a>
         </div>
     </div>
     <header>
       <div class="center">
-        <img src="img/igt-america-logo-horiz.svg" />
+        <img class="header-logo" src="img/igt-america-logo-horiz.svg" />
       </div>
     </header>
-    <ul class="nav nav-pills em-nav">
+    <ul class="nav">
       <li class="nav-item">
-        <a class="nav-link em-nav-link" href="index.php">Active Orders</a>
+        <a class="nav-link" href="index.php">Active Orders</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link em-nav-link" href="complete-orders.php">Completed Orders</a>
+        <a class="nav-link" href="complete-orders.php">Completed Orders</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link em-nav-link active">Order Archive</a>
+        <a class="nav-link active">Order Archive</a>
       </li>
     </ul>
     <section class="container-fluid">
@@ -102,7 +100,8 @@
                       echo "<td>".$row[9]."</td>";
                       echo "<td>".$row[10]."</td>";
                       echo "<td class='icon icon-col'><a href='order-archive.php?restore=2&ordNo={$ordNumber}&lineNo={$lineNumber}'>
-                                  <img src='img/restore-icon.svg' width='35'>
+                                  <i class='far fa-window-restore'></i>
+                                  <!-- <img class='icon' src='img/restore-icon-3.svg'> -->
                                 </a>
                             </td>";                  
                     echo "</tr>";

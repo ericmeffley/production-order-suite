@@ -1,0 +1,26 @@
+.header {
+    width:100%;
+    padding: 20px;
+}
+
+.header-logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 350px;
+}
+
+.top-toolbar{
+    box-sizing: border-box;
+    width: 100%;
+    background-color: $lt-gray;
+    height: 65px;
+    padding: 10px 15px 10px 15px;
+}
+
+.login-header-logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 150px;
+}

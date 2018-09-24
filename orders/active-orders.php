@@ -13,7 +13,7 @@
     orderComplete();
     header("Location:active-orders.php");
   }
-  //if(isset($_GET['clear']))
+
 ?>
 
 <!doctype html>
@@ -23,96 +23,85 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,600" rel="stylesheet"> 
-
+    <!-- Web Fonts--> 
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300|Raleway:500" rel="stylesheet"> 
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"> 
     <!-- Local CSS -->
-    <link rel="stylesheet" href="css/main.css?v=1.27">
+    <link rel="stylesheet" href="../css/main.css?v=<?php echo time(); ?>">
 
-    <title>IGT Order Suite</title>
+    <title>IGT Production Suite</title>
   </head>
-    <body>
+  <body>
     <!-- Top toolbar to dock buttons -->
-    <div class="container-fluid top-toolbar">
+    <section class="top-toolbar">
       <div>
-          <label for="clear-buttons" class="pad-1"><span style="color:lightgrey;">-</span></label>
-          <!-- <a class="btn btn-primary" href="functions.php?clear=indoff">Indoff</a>
-          <a class="btn btn-primary" href="functions.php?clear=mv">MV</a>
-          <a class="btn btn-primary" href="functions.php?clear=general">General</a> -->
-          <a class="btn btn-danger float-right" href="../logout.php">Log Out</a>
-        </div>
-        
-    </div>
+        <a class="btn btn-secondary float-right" href="../logout.php">Log Out</a>
+      </div>
+    </section>
       
-      <header>
-        <div class="center">
-          <img src="img/igt-america-logo-horiz.svg" />
-        </div>
-      </header>
-      <ul class="nav nav-pills em-nav">
+    <section class="header">
+        <img class="header-logo" src="img/igt-america-logo-horiz.svg" />
+    </section>
+      <ul class="nav">
         <li class="nav-item">
-          <a class="nav-link em-nav-link active" href="index.php">Active Orders</a>
+          <a class="nav-link active" href="index.php">Active Orders</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link em-nav-link" href="complete-orders.php">Completed Orders</a>
+          <a class="nav-link" href="complete-orders.php">Completed Orders</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link em-nav-link" href="order-archive.php">Order Archive</a>
+          <a class="nav-link" href="order-archive.php">Order Archive</a>
         </li>
       </ul>
-    <section class="container-fluid">
-      <table class='table table-hover'>
-        <thead  class="thead-dark">
+    <section class="container-wide">
+      <table class='table'>
+        <thead>
           <tr>
-            <!-- <th>Line</th> -->
-            <th class="border-top-0">Item</th>
-            <th class="border-top-0">Reference</th>
-            <th class="border-top-0">Quantity</th>
-            <th class="border-top-0">Order</th>
-            <th class="border-top-0">Purchase Order</th>
-            <th class="border-top-0">Customer</th>
-            <th class="border-top-0">Ordered</th>
-            <th class="border-top-0">Due Date</th>
-            <th class="border-top-0">Description</th>
-            <th class="border-top-0 icon-col-header">Done</th>
+            <th>Item</th>
+            <th>Reference</th>
+            <th>Quantity</th>
+            <th>Order</th>
+            <th>Purchase Order</th>
+            <th>Customer</th>
+            <th>Ordered</th>
+            <th>Due Date</th>
+            <th>Description</th>
+            <th>Complete</th>
           </tr>
-          </thead>
-          <tbody class="table-striped">
-            <?php
-              //Query orders
-              $result = $conn->query("SELECT * FROM active_orders ORDER BY due_date ASC");
-              //Insert each row into the table
-              foreach($result as $row){
-                //Store the order number for 'done' button
-                $ordNumber = $row[5];
-                $lineNumber = $row[1];
-                //Display rows
+        </thead>
+        <tbody class="table-striped">
+          <?php
+            //Query orders
+            $result = $conn->query("SELECT * FROM active_orders ORDER BY due_date ASC");
+            //Insert each row into the table
+            foreach($result as $row){
+              //Store the order number for 'done' button
+              $ordNumber = $row[5];
+              $lineNumber = $row[1];
+              //Display rows
 
-                  echo "<tr>";
-                  //echo "<td>".$row[1]."</td>";
-                  echo "<td>".$row[2]."</td>";
-                  echo "<td>".$row[3]."</td>";
-                  echo "<td>".$row[4]."</td>";
-                  echo "<td>".$row[5]."</td>";
-                  echo "<td>".$row[6]."</td>";
-                  echo "<td>".$row[7]."</td>";
-                  echo "<td>".$row[8]."</td>";
-                  echo "<td>".$row[9]."</td>";
-                  echo "<td>".$row[10]."</td>";                  
-                  echo "<td class='icon icon-col'>
-                            <a href='active-orders.php?done=1&ordNo={$ordNumber}&lineNo={$lineNumber}' title='Order Complete'>
-                              <img src='img/done-icon.svg' width='35' style='margin-left:50;'>
-                            </a>
-                        </td>";
-                  echo "</tr>";
+                echo "<tr>";
+                echo "<td>".$row[2]."</td>";
+                echo "<td>".$row[3]."</td>";
+                echo "<td>".$row[4]."</td>";
+                echo "<td>".$row[5]."</td>";
+                echo "<td>".$row[6]."</td>";
+                echo "<td>".$row[7]."</td>";
+                echo "<td>".$row[8]."</td>";
+                echo "<td>".$row[9]."</td>";
+                echo "<td>".$row[10]."</td>";                  
+                echo "<td class='icon icon-col'>
+                          <a href='active-orders.php?done=1&ordNo={$ordNumber}&lineNo={$lineNumber}' title='Mark Order Complete'>
+                          <i class='fas fa-clipboard-check fa-lg'></i>
+                          </a>
+                      </td>";
+                echo "</tr>";
 
-              }
+            }
 
-            ?>
-          </tbody>
+          ?>
+        </tbody>
       </table>
     </section>        
 

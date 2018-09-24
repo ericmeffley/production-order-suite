@@ -1,0 +1,46 @@
+.btn{
+    box-sizing: border-box;
+    padding: 8px 15px;
+    margin: 3px;
+    font-size: 1rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: $lt-blue;
+    border-radius: 2px;
+    color: white;
+
+    &:hover{
+        border: 1px solid $primary-color;
+    }
+}
+
+.btn-secondary {
+    background-color: $lt-red;
+    border-radius: 2px;
+    color: white;
+}
+
+.btn-bordered-gray-1 {
+    background-color: $lt-gray;
+    border-radius: 2px;
+    color: $primary-color;
+}
+
+.btn-link{
+    padding: 3px;
+    font-size: 1.1rem;
+    text-decoration: none;
+    color: rgb(82, 146, 213);
+    
+    &:hover{
+        font-size: 1.2rem;
+    }
+}
+.inline-btn{
+    display:inline-block;
+}
