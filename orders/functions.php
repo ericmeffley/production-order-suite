@@ -76,6 +76,9 @@ include_once("config/db.php");
             $move_stmt->bindParam(':lineNum', $line_number);
             $move_stmt->execute();
             $result = $move_stmt->fetch();
+
+            //Insert row into completed orders table
+            $insert_stmt = $conn->query("INSERT INTO `completed_orders` (`line_number`, `item`, `reference`, `quantity`, `order_number`, `purchase_order`, `customer_number`, `created_at`, `due_date`, `description`) VALUES('$result[1]','$result[2]','$result[3]','$result[4]','$result[5]','$result[6]','$result[7]','$result[8]','$result[9]','$result[10]')");
         } else {
             //Copy order to from completed orders table
             $move_stmt = $conn->prepare("SELECT * FROM completed_orders WHERE order_number=(:orderNum) && line_number=(:lineNum)");
@@ -83,10 +86,13 @@ include_once("config/db.php");
             $move_stmt->bindParam(':lineNum', $line_number);
             $move_stmt->execute();
             $result = $move_stmt->fetch();
+
+            //Insert row into active orders table
+            $insert_stmt = $conn->query("INSERT INTO `active_orders` (`line_number`, `item`, `reference`, `quantity`, `order_number`, `purchase_order`, `customer_number`, `created_at`, `due_date`, `description`) VALUES('$result[1]','$result[2]','$result[3]','$result[4]','$result[5]','$result[6]','$result[7]','$result[8]','$result[9]','$result[10]')");
         }
         
-        //Insert row into active orders table
-        $insert_stmt = $conn->query("INSERT INTO `active_orders` (`line_number`, `item`, `reference`, `quantity`, `order_number`, `purchase_order`, `customer_number`, `created_at`, `due_date`, `description`) VALUES('$result[1]','$result[2]','$result[3]','$result[4]','$result[5]','$result[6]','$result[7]','$result[8]','$result[9]','$result[10]')");
+        // //Insert row into active orders table
+        // $insert_stmt = $conn->query("INSERT INTO `active_orders` (`line_number`, `item`, `reference`, `quantity`, `order_number`, `purchase_order`, `customer_number`, `created_at`, `due_date`, `description`) VALUES('$result[1]','$result[2]','$result[3]','$result[4]','$result[5]','$result[6]','$result[7]','$result[8]','$result[9]','$result[10]')");
 
         if ($restore == "2"){
             //Delete row from archived orders table
