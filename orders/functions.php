@@ -7,19 +7,19 @@ include_once("config/db.php");
 
         if($clearSlip == "indoff"){
             if($stmt = $conn->query('TRUNCATE TABLE indoff_packing_slip')){
-                echo '<script>if(confirm("Indoff slip has been cleared")) document.location = "index.php"</script>';
+                echo '<script>if(confirm("Indoff slip has been cleared")) document.location = "complete-orders.php"</script>';
             }
         }
 
         if($clearSlip == "mv"){
             if($stmt = $conn->query('TRUNCATE TABLE mv_packing_slip')){
-                echo '<script>if(confirm("Magna Visual slip has been cleared")) document.location = "index.php"</script>';
+                echo '<script>if(confirm("Magna Visual slip has been cleared")) document.location = "complete-orders.php"</script>';
             }
         }
 
         if($clearSlip == "general"){
             if($stmt = $conn->query('TRUNCATE TABLE general_packing_slip')){
-                echo '<script>if(confirm("Gerneral packing slip has been cleared")) document.location = "index.php"</script>';
+                echo '<script>if(confirm("Gerneral packing slip has been cleared")) document.location = "complete-orders.php"</script>';
             }
         }
         
