@@ -44,57 +44,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.css">
-
-    <!-- Google Web Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet"> 
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/styles.css?=1.05">
-    
-
-  </head>
+    <!-- Web Fonts--> 
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300|Raleway:300,500" rel="stylesheet"> 
+    <!-- Local CSS-->
+    <link rel="stylesheet" type="text/css" href="css/main.css?=<?php echo time(); ?>">
+</head>
   <body>
     
-
+    <!-- Error Section -->
     <div class="container" id="error"><?php echo $error; ?></div>
-    <div class="container">
-    <div style="text-align:center;margin-top:50px;">
-      <h1 style="color:navy;">IGT Production Suite</h1>
-    </div>
-        <div class="signup-container">
-            <h2 style="text-align:center;color:#559cd6">Sign Up</h2>
-            <br>
+
+    <section class="container">
         <div class="row">
-          <div class="col-sm-2"></div>
-            <div class="col-sm-8">
-              <form name="signupForm" onsubmit="return passwordMatch()" method="post">
-                <div class="form-group">
-                    <label for="displayName">Display Name</label>
-                    <input type="text" class="form-control" id="displayName" name="displayName" aria-describedby="displayName" placeholder="Choose a display name." required>
+            <img class="login-header-logo" src="img/igt-america-logo.svg"/>
+            <p class="heading-md text-center text-color-primary">Production Suite</p>
+            <div class="login-box">
+                <p class="heading-sm text-center text-secondary">Sign Up</p>
+                <form name="signupForm" onsubmit="return passwordMatch()" method="post">
+                <div>
+                    <input type="text" id="displayName" name="displayName" aria-describedby="displayName" placeholder="Choose a display name." required>
                 </div>
-                <div class="form-group">
-                    <label for="userName">Username</label>
-                    <input type="email" class="form-control" id="userName" name="userName" aria-describedby="emailHelp" placeholder="Enter email" required>
+                <div>
+                    <input type="email" id="userName" name="userName" aria-describedby="emailHelp" placeholder="Enter email" required>
                 </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                <div>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
                 </div>
-                <div class="form-group">
-                    <label for="confirmPassword">Confirm Password</label>
-                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="" required/>
+                <div>
+                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required/>
                 </div>
-                <input type="submit" value="Sign Up" name="submit" class="btn btn-primary">
-                <span class="signup-link"><a href="index.php" class="signup">Login</a></span>
-              </form>
+                <button type="submit" name="submit" class="btn btn-primary">Sign Up</button>
+                <a href="index.php" class="btn btn-link text-secondary">Login</a>
+                </form>
             </div>
-          </div>
-          <div class="col-sm-2"></div>
-        </div>
-    </div>
+            </div>
+    </section>
     <script src="js/main.js"></script>
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>

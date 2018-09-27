@@ -3,11 +3,6 @@ html, body {
   padding: 0;
 }
 
-@media (max-width: 1024px) {
-  table td {
-    padding: 3px;
-  }
-}
 body {
   font-size: 1rem;
 }

@@ -97,7 +97,7 @@
             <img class="login-header-logo" src="img/igt-america-logo.svg"/>
             <p class="heading-md text-center text-color-primary">Production Suite</p>
             <div class="login-box">
-            <p class="heading-sm text-center text-lt-blue ">Log In</p>
+            <p class="heading-sm text-center text-secondary">Log In</p>
             <form method="post" action="">
                 <div class="row">
                     <div>
