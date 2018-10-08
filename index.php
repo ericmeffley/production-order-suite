@@ -5,10 +5,21 @@
     include_once 'config/db.php';
 
 
-    //Variables
-    $error = "";
-    $successMessage = "";
+    //Initialize variables
+    $error = ""; $successMessage = ""; $userfocus = ""; $passfocus = "";
+
+    //Initialize session variables
     $_SESSION['displayname']="";
+    
+    //Set cursor focus
+    if(empty($_SESSION['username'])){
+
+        $_SESSION['username'] = "";
+        $userfocus = "autofocus";
+    } else {
+            $passfocus = "autofocus";
+            $error = '<div class="alert alert-danger">Password Not Correct.</div>';
+        }
     
     //Check if logged in
     if($_SESSION['displayname'] && $_SESSION['username'] && $_SESSION['id']){
@@ -17,6 +28,7 @@
     
         if (isset($_POST['submit'])){
             //Store Entered Username And Password
+            $_SESSION['username'] = $_POST['username'];
             $enteredPassword = $_POST['password'];
             $enteredUsername = $_POST['username'];
 
@@ -58,6 +70,7 @@
                     header("Location: orders/index.php");
                 } else{
                     $error = '<div class="alert alert-danger">Password Not Correct.</div>';
+                    header("Location: orders/index.php");
                 }
                 
             } else {
@@ -101,12 +114,10 @@
             <form method="post" action="">
                 <div class="row">
                     <div>
-                        <!-- <label for="username"><strong>Email</strong></label> -->
-                        <input type="text" id="username" name="username" aria-describedby="emailHelp" placeholder="Email" autofocus>
+                        <input type="text" id="username" name="username" aria-describedby="emailHelp" placeholder="Email" value="<?php if($_SESSION['username']){ echo $_SESSION['username'];} ?>" <?php  echo $userfocus ?> >
                     </div>
                     <div>
-                        <!-- <label><strong>Password</strong></label> -->
-                        <input type="password" id="password" name="password" placeholder="Password">
+                        <input type="password" id="password" name="password" placeholder="Password" <?php echo $passfocus ?>>
                     </div>
                 </div>
                 <div class="vh-2"></div>
