@@ -110,24 +110,24 @@
             <img class="login-header-logo" src="img/igt-america-logo.svg"/>
             <p class="heading-md text-center text-color-primary">Production Suite</p>
             <div class="login-box">
-            <p class="heading-sm text-center text-secondary">Log In</p>
-            <form method="post" action="">
-                <div class="row">
-                    <div>
-                        <input type="text" id="username" name="username" aria-describedby="emailHelp" placeholder="Email" value="<?php if($_SESSION['username']){ echo $_SESSION['username'];} ?>" <?php  echo $userfocus ?> >
-                    </div>
-                    <div>
-                        <input type="password" id="password" name="password" placeholder="Password" <?php echo $passfocus ?>>
-                    </div>
-                </div>
-                <div class="vh-2"></div>
-                <div class="row">
-                    <button type="submit" name="submit" class="btn btn-primary">Login</button>
-                    <a href="signup.php" class="btn btn-link">Signup</a>
-                    <!-- <a href="reset_request.php" class="btn btn-link" style="float:right;margin-top:10px;">Forgot Password</a> -->
-                </div>
-            </form>
-            </div>
+              <p class="heading-sm text-center text-secondary">Log In</p>
+              <form method="post" action="">
+                  <div class="row">
+                      <div>
+                          <input type="text" id="username" name="username" aria-describedby="emailHelp" placeholder="Email" value="<?php if($_SESSION['username']){ echo $_SESSION['username'];} ?>" <?php  echo $userfocus ?> >
+                      </div>
+                      <div>
+                          <input type="password" id="password" name="password" placeholder="Password" <?php echo $passfocus ?>>
+                      </div>
+                  </div>
+                  <div class="vh-2"></div>
+                  <div class="row">
+                      <button type="submit" name="submit" class="btn btn-primary">Login</button>
+                      <a href="signup.php" class="btn btn-link">Signup</a>
+                      <!-- <a href="reset_request.php" class="btn btn-link" style="float:right;margin-top:10px;">Forgot Password</a> -->
+                  </div>
+              </form>
+          </div>
         </div>
     </section>
  

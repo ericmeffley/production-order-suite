@@ -5,6 +5,14 @@ body{
     width: 70%;
     margin: auto;
     padding: 10px 25px;
+    
+    @media only screen and (max-width: 1400px){
+        width: 85%;
+    }
+
+    @media only screen and (max-width: 1024px){
+        width: 100%;
+    }
 }
 .container-wide {
     width: 100%;
@@ -42,10 +50,18 @@ body{
     box-sizing: border-box;
     margin-left: auto;
     margin-right: auto;
-    width: 40%;
+    width: 60%;
     padding: 35px;
     border: 1px solid rgb(82, 146, 213);
     border-radius: 2px;
+
+    @media only screen and (max-width: 1400px) {
+        width: 75%;
+    }
+
+    @media only screen and (max-width: 1024px) {
+        width: 100%;
+    }
 }
 
 .table {
