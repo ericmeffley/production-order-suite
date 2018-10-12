@@ -23,7 +23,7 @@
     
     //Check if logged in
     if($_SESSION['displayname'] && $_SESSION['username'] && $_SESSION['id']){
-        header("Location: main.php");
+        header("Location: orders/active-orders.php");
     }else{
     
         if (isset($_POST['submit'])){

@@ -32,32 +32,32 @@
     <title>IGT Production Suite</title>
   </head>
   <body>
-  <div class="container-wide top-toolbar">
+    <div class="container-wide top-toolbar">
       <div>
           <a class="btn btn-secondary float-right" href="../logout.php">Log Out</a>
-        </div>
+      </div>
     </div>
-    <header>
+    <header class="header">
       <div class="center">
         <img class="header-logo" src="img/igt-america-logo-horiz.svg" />
       </div>
     </header>
-    <ul class="nav">
-      <li class="nav-item">
+    <!-- Navigation bar -->
+    <nav class="nav">
+      <div class="nav-item">
         <a class="nav-link" href="index.php">Active Orders</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="complete-orders.php">Completed Orders</a>
-      </li>
-      <li class="nav-item">
+      </div>
+      <div class="nav-item">
+        <a class="nav-link" href="complete-orders.php">Complete Orders</a>
+      </div>
+      <div class="nav-item">
         <a class="nav-link active">Order Archive</a>
-      </li>
-    </ul>
+      </div>
+    </nav>
     <section class="container-fluid">
       <table class='table border-top-0 table-hover'>
         <thead class="thead-dark">
           <tr>
-            <th class="border-top-0">Line</th>
             <th class="border-top-0">Item</th>
             <th class="border-top-0">Reference</th>
             <th class="border-top-0">Quantity</th>
@@ -89,7 +89,6 @@
                   $lineNumber = $row[1];
                   //Display rows
                     echo "<tr>";
-                      echo "<td>".$row[1]."</td>";
                       echo "<td>".$row[2]."</td>";
                       echo "<td>".$row[3]."</td>";
                       echo "<td>".$row[4]."</td>";

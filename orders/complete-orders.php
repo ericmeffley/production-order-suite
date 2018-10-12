@@ -3,7 +3,8 @@
   session_start();
   include_once("config/db.php");
   include_once('functions.php');
-  
+  $error = "";
+
   //Check if logged in
   if(!$_SESSION['loggedIn']){
     header("Location: ../index.php");
@@ -24,6 +25,13 @@
     archiveOrder();
     header("Location:complete-orders.php");
   }
+
+  if(isset($_GET['sort'], $_GET['pagerequest'])){
+    $sort = sortby($_GET['sort'], $_GET['pagerequest']);
+  } else {
+    $sort = $conn->query("SELECT * FROM completed_orders ORDER BY due_date ASC");
+  }
+
   
 ?>
 
@@ -52,22 +60,20 @@
           <a class="btn btn-secondary float-right" href="../logout.php">Log Out</a>
         </div>
     </section>
-    <section class="header">
+    <div id="error"><?php echo $error; ?></div>
+    <header class="header">
       <img class="header-logo" src="img/igt-america-logo-horiz.svg" />
-    </section>
+    </header>
 
     <!-- Navbar section -->
-    <ul class="nav">
-      <li class="nav-item">
+    <nav class="nav">
+      <div class="nav-item">
         <a class="nav-link" href="index.php">Active Orders</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active">Completed Orders</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="order-archive.php">Order Archive</a>
-      </li>
-      <li class="nav-item">
+      </div>
+      <div class="nav-item">
+        <a class="nav-link active">Complete Orders</a>
+      </div>
+      <div class="nav-item">
         <div class="dropdown">
           <a class="nav-link"><i class="fas fa-sort-down fa-lg"></i>&nbsp;Packing Slips</a>
           <div class="dropdown-content">
@@ -76,22 +82,25 @@
             <a href="packing-slip/other.php" target="_blank">Other</a>
           </div>
         </div> 
-      </li>
-    </ul>
+      </div>
+      <div class="nav-item">
+        <a class="nav-link" href="order-archive.php">Order Archive</a>
+      </div>
+      
+    </nav>
     <!-- Table data display -->
     <section class="container-wide">
       <table class='table border-top-0 table-hover'>
         <thead class="thead-dark">
           <tr>
-            <th class="border-top-0">Line</th>
             <th class="border-top-0">Item</th>
             <th class="border-top-0">Reference</th>
             <th class="border-top-0">Quantity</th>
             <th class="border-top-0">Order</th>
             <th class="border-top-0">Purchase Order</th>
-            <th class="border-top-0">Customer</th>
-            <th class="border-top-0">Ordered</th>
-            <th class="border-top-0">Due Date</th>
+            <th class="border-top-0"><a class="btn-link" href="complete-orders.php?sort=customer&pagerequest=complete">Customer</a></th>
+            <!-- <th class="border-top-0">Ordered</th> -->
+            <th class="border-top-0"><a class="btn-link" href="complete-orders.php?sort=duedate&pagerequest=complete">Due Date</th>
             <th class="border-top-0">Description</th>
             <th class="border-top-0 icon-col-header" >Pack</th>
             <th class="border-top-0 icon-col-header">Restore</th>
@@ -101,15 +110,8 @@
           <tbody>
             <?php
               //Query orders
-              $result = $conn->query("SELECT * FROM completed_orders");
+              $result = $sort;
 
-              if(empty($result)){ 
-
-                  echo "<tr>";
-                    echo "<td>No records found.</td>";
-                  echo "</tr>";
-
-              }else{ 
                 //Insert each row into the table
                 foreach($result as $row){
                   //Store the order and line number for text button
@@ -118,14 +120,13 @@
                   $customer = $row[7];
                   //Display rows
                     echo "<tr>";
-                      echo "<td>".$row[1]."</td>";
                       echo "<td>".$row[2]."</td>";
                       echo "<td>".$row[3]."</td>";
                       echo "<td>".$row[4]."</td>";
                       echo "<td>".$row[5]."</td>";
                       echo "<td>".$row[6]."</td>";
                       echo "<td>".$row[7]."</td>";
-                      echo "<td>".$row[8]."</td>";
+                      //echo "<td>".$row[8]."</td>";
                       echo "<td>".$row[9]."</td>";
                       echo "<td>".$row[10]."</td>";                  
                       
@@ -147,7 +148,6 @@
                             </td>";
                     echo "</tr>";
                 }
-              }
             ?>
           </tbody>
       </table>

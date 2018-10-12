@@ -25,6 +25,30 @@ include_once("config/db.php");
         
     }
 
+    function sortby($sortby, $pagerequest){
+        global $conn;
+        if ($pagerequest == "complete"){
+          if($sortby == "customer"){
+              $result = $conn->query("SELECT * FROM completed_orders ORDER BY customer_number ASC");
+            } elseif ($sortby == "duedate") {
+              $result = $conn->query("SELECT * FROM completed_orders ORDER BY due_date ASC");
+            }else {
+              $result = $conn->query("SELECT * FROM completed_orders ORDER BY due_date ASC");
+            }
+        return($result);
+      }
+      if ($pagerequest == "active"){
+          if($sortby == "customer"){
+              $result = $conn->query("SELECT * FROM active_orders ORDER BY customer_number ASC");
+            } elseif ($sortby == "duedate") {
+              $result = $conn->query("SELECT * FROM active_orders ORDER BY due_date ASC");
+            }else {
+              $result = $conn->query("SELECT * FROM active_orders ORDER BY due_date ASC");
+            }
+        return($result);
+      }
+    }
+
     function getlastOrderImported(){
         global $conn;
         $id = 1;

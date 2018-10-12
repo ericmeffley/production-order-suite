@@ -48,12 +48,12 @@ body{
     border-radius: 2px;
 }
 
-table {
+.table {
     
-    width: 95%;
+    width: 100%;
     margin: auto;
     border-collapse: collapse;
-    min-width: 1024px;
+    padding: 0 20px;
 
     thead th{
         padding: 15px 5px 15px 5px;
@@ -63,22 +63,16 @@ table {
     }
 
     th {
-        box-sizing: border-box;
         border: 1px solid $lt-gray;
     }
 
     td {
-        padding: 12px 8px;
+        line-height: 3rem;
         border: 1px solid $lt-gray;
         font-family: $body-font;
         letter-spacing: .05em;
         text-align: center;
         white-space: nowrap;
-    }
-
-    @media(max-width: 1024px){
-        margin-top: 2px;
-        margin-bottom: 2px;
     }
 
 }
@@ -89,4 +83,11 @@ tr:nth-child(even){
 
 tr:hover{
     background-color: rgb(255, 242, 242);
+}
+
+ul li {
+    @media only screen and (max-width: 800px){
+        display: block;
+        margin: auto;
+    }
 }
