@@ -116,7 +116,6 @@
 <footer class="footer">
   <div class="container">
     <p class="text-center">&copy;2018 IGT America Inc.</p>
-    
   </div>
 </footer>
 
