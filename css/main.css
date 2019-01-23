@@ -216,7 +216,7 @@ i.fa-clipboard-check {
 }
 
 .nav {
-  margin: 30px auto 40px auto;
+  margin: 30px auto 20px auto;
   width: 100%;
   padding: 0 20px;
   display: inline-grid;
@@ -325,6 +325,37 @@ input::placeholder {
   font-family: "Montserrat", sans-serif;
 }
 
+.edit-container {
+  background-color: #fff4b4;
+  margin-bottom: 25px;
+}
+
+#edit-block {
+  width: 90%;
+  margin: 10px auto;
+}
+
+.grid-container {
+  margin: 0 auto;
+  display: inline-grid;
+  grid-template-columns: repeat(8, auto);
+  grid-gap: 10px;
+  padding: 10px;
+}
+
+.grid-item {
+  border-bottom: 1px solid #b8a936;
+  border-top: 1px solid #b8a936;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.grid-header {
+  font-size: 1.1rem;
+  text-align: center;
+}
+
 .btn {
   box-sizing: border-box;
   padding: 8px 15px;
@@ -349,6 +380,11 @@ input::placeholder {
   background-color: #dc7575;
   border-radius: 2px;
   color: white;
+}
+
+.btn-update {
+  background-color: #b8a936;
+  border-radius: 2px;
 }
 
 .btn-bordered-gray-1 {

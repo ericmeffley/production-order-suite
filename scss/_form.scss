@@ -23,3 +23,36 @@ input::placeholder {
     font-size: 1.25rem;
     font-family: $body-font;
 }
+
+.edit-container{
+    background-color: rgb(255, 244, 180);
+    margin-bottom: 25px;
+}
+
+#edit-block{
+    //display: none;
+    width: 90%;
+    margin: 10px auto;
+}
+
+.grid-container{
+    margin: 0 auto;
+    display: inline-grid;
+    grid-template-columns: repeat(8, auto);
+    grid-gap: 10px;
+    padding: 10px;
+}
+
+.grid-item{
+    border-bottom: 1px solid rgb(184, 169, 54);
+    border-top: 1px solid rgb(184, 169, 54);
+    border-radius: 10px;
+    font-size: 1.1rem;
+    text-align: center;
+}
+.grid-header{
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+

@@ -4,6 +4,7 @@
   include_once("config/db.php");
   include_once('functions.php');
   $error = "";
+  $editRow = [];
 
   //Check if logged in
   if(!$_SESSION['loggedIn']){
@@ -20,6 +21,25 @@
     $sort = sortby($_GET['sort'], $_GET['pagerequest']);
   } else {
     $sort = $conn->query("SELECT * FROM active_orders ORDER BY due_date ASC");
+  }
+
+  if(isset($_GET['edit'])){
+    
+    //Store $_GET variable
+    $issue_id = $_GET['edit'];
+
+    //echo $issue_id;
+      $edit_query = $conn->prepare("SELECT * FROM active_orders WHERE id = ?");
+      $edit_query->execute(array($issue_id));
+      $row = $edit_query->fetch();
+      $editRow = [$row[2], $row[3],$row[4],$row[5],$row[6],$row[7],$row[9],$row[10],];
+
+  }
+
+  if(isset($_POST['update'])){
+
+    // print_r($_POST['update']);
+    header("Location: active-orders.php");
   }
 
 ?>
@@ -61,7 +81,37 @@
         <a class="nav-link" href="order-archive.php">Order Archive</a>
       </div>
     </nav>
-    <section>
+    
+      <!-- Edit Container -->
+      <?php if(isset($_GET["edit"])){
+        echo '
+        <section class="container-wide edit-container">
+        <form method="post">
+            <div id="edit-block">
+              <div class="grid-container">
+                <p class="grid-header">Item</p>
+                <p class="grid-header">Reference</p>
+                <p class="grid-header">Quantity</p>
+                <p class="grid-header">Order #</p>
+                <p class="grid-header">PO #</p>
+                <p class="grid-header">Customer #</p>
+                <p class="grid-header">Due Date</p>
+                <p class="grid-header">Description</p>
+                <input type="text" class="grid-item" value="' ?><?php if(isset($editRow[0])){echo $editRow[0];} ?> <?php echo '"> 
+                <input type="text" class="grid-item" value="' ?><?php if(isset($editRow[1])){echo $editRow[1];} ?> <?php echo '">
+                <input type="text" class="grid-item" value="' ?><?php if(isset($editRow[0])){echo $editRow[2];} ?> <?php echo '">
+                <input type="text" class="grid-item" value="' ?><?php if(isset($editRow[0])){echo $editRow[3];} ?> <?php echo '">
+                <input type="text" class="grid-item" value="' ?><?php if(isset($editRow[0])){echo $editRow[4];} ?> <?php echo '">
+                <input type="text" class="grid-item" value="' ?><?php if(isset($editRow[0])){echo $editRow[5];} ?> <?php echo '">
+                <input type="text" class="grid-item" value="'?><?php if(isset($editRow[0])){echo $editRow[6];} ?><?php echo '">
+                <input type="text" class="grid-item" value="'?><?php if(isset($editRow[0])){echo $editRow[7];} ?> <?php echo '">
+              </div>
+              <button class="btn btn-update" name="update" >Update</button>
+            </div>
+          </form>
+        </section>';} ?>
+        
+      
       <table class='table'>
         <thead>
           <tr>
@@ -75,6 +125,7 @@
             <th><a class="btn-link" href="active-orders.php?sort=duedate&pagerequest=active">Due Date</a></th>
             <th>Description</th>
             <th>Complete</th>
+            <th>Edit</th>
           </tr>
         </thead>
         <tbody class="table-striped">
@@ -87,8 +138,9 @@
               //Store the order number for 'done' button
               $ordNumber = $row[5];
               $lineNumber = $row[1];
-              //Display rows
 
+              $rowId = $row[0];
+              //Display rows
                 echo "<tr>";
                 echo "<td>".$row[2]."</td>";
                 echo "<td>".$row[3]."</td>";
@@ -104,6 +156,8 @@
                           <i class='fas fa-clipboard-check fa-lg'></i>
                           </a>
                       </td>";
+                      echo "<td class='icon icon-col'>
+                      <a href='http://localhost/ordersuite/orders/active-orders.php?edit=$rowId'><i class='fas fa-edit fa-lg'></i></a></td>";
                 echo "</tr>";
 
             }
@@ -119,7 +173,14 @@
   </div>
 </footer>
 
-    <!-- Optional JavaScript -->
+    <!-- Show Edit Container -->
+    <script>
+      function showEdit() {
+        //document.getElementById("edit-container").style.display = "block";
+        document.getElementById("edit-container").style.display = "block";
+
+      }
+    </script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
