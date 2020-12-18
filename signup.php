@@ -9,7 +9,7 @@
         //STORE POST VARIABLES
         $username = $_POST["userName"];
         $password = $_POST["password"];
-        $displayName = $_POST["displayName"];
+        $displayname = $_POST["displayName"];
 
         //ENCRYPT PASSWORD
         $hash = "$2y$10$";
@@ -17,18 +17,16 @@
         $hash_and_salt = $hash.$salt;
         $password = crypt($password,$hash_and_salt);
 
-        $sign_up_query = $conn->prepare("INSERT INTO users (username,password,displayname) VALUES (?,?,?)");
-        $sign_up_query->bindParam(1, $username);
-        $sign_up_query->bindParam(2, $password);
-        $sign_up_query->bindParam(3, $displayName);
-        $result = $sign_up_query->execute();
-        
-        if($result){
-            $error="<div class='alert alert-success' role='alert'><p>Signup successfull, welcome to the family</p></div>";
-
-            header( "Refresh:2; url=index.php", true, 303);
+        //SQL Statement
+        $sql = 'INSERT INTO users (username, password, displayname) VALUES (?,?,?)';
+        //Prepare the Statement
+        $stmt = $conn->prepare($sql);
+        //Execute Statement
+        if ($stmt->execute([$username, $password, $displayname])) {
+            $success = "<div class='alert alert-success mt-4' role='alert'><p>Signup successfull.</p></div>";
+            header("Refresh:2, url=index.php");
         } else {
-            die("Sign up unsuccessful please try again later");
+            $error = "<div class='alert alert-danger mt-4' role='alert'><p>Signup failed, please try your entry again.</p></div>";
         }
     }
     
@@ -59,6 +57,7 @@
             <img class="login-header-logo" src="img/igt-america-logo.svg"/>
             <p class="heading-md text-center text-color-primary">Production Suite</p>
             <div class="login-box">
+                <?php echo $success; ?>
                 <p class="heading-sm text-center text-secondary">Sign Up</p>
                 <form name="signupForm" onsubmit="return passwordMatch()" method="post">
                 <div>

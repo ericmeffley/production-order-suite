@@ -2,7 +2,7 @@
 
     //DB Params
     $servername = "localhost";
-    $username = "root";
+    $username = "appdev";
     $password = "";
     $dbname = "igt_orders";
 
