@@ -17,9 +17,9 @@ include_once("config/db.php");
             }
         }
 
-        if($clearSlip == "general"){
+        if($clearSlip == "misc"){
             if($stmt = $conn->query('TRUNCATE TABLE general_packing_slip')){
-                echo '<script>if(confirm("Gerneral packing slip has been cleared")) document.location = "complete-orders.php"</script>';
+                echo '<script>if(confirm("Miscellaneous packing slip has been cleared")) document.location = "complete-orders.php"</script>';
             }
         }
         

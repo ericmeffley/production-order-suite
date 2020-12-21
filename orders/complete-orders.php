@@ -54,9 +54,9 @@
     <section class="top-toolbar">
       <div>
           <label for="clear-buttons">Clear Packing List >></label>
-          <a class="btn btn-primary inline-btn btn-round" href="functions.php?clear=indoff">Indoff</a>
-          <a class="btn btn-primary inline-btn" href="functions.php?clear=mv">MV</a>
-          <a class="btn btn-primary inline-btn" href="functions.php?clear=general">General</a>
+          <a class="btn btn-primary inline-btn btn-round" onclick="clearPackingSlip('indoff')">Indoff</a>
+          <a class="btn btn-primary inline-btn" onclick="clearPackingSlip('mv')">MV</a>
+          <a class="btn btn-primary inline-btn" onclick="clearPackingSlip('misc')">Misc.</a>
           <a class="btn btn-secondary float-right" href="../logout.php">Log Out</a>
         </div>
     </section>
@@ -158,7 +158,33 @@
       <p class="text-center">&copy;2018 IGT America Inc.</p>
     </div>
   </footer>
-
+    <script>
+      function clearPackingSlip(n) {
+        var slipDetail = n;
+        if (slipDetail == "indoff"){
+          var response = confirm("Clear INDOFF Slip??")
+          if (response == true){
+            document.location = "functions.php?clear=indoff";
+          } else {
+            document.location = "complete-orders.php";
+          }
+        } else if (slipDetail == "mv") {
+          var response = confirm("Clear Magna Visual Slip??")
+          if (response == true){
+            document.location = "functions.php?clear=mv";
+          } else {
+            document.location = "complete-orders.php";
+          }
+        } else {
+          var response = confirm("Clear Miscellaneous Slip??")
+          if (response == true){
+            document.location = "functions.php?clear=misc";
+          } else {
+            document.location = "complete-orders.php";
+          }
+        }
+      }
+    </script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
