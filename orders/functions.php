@@ -1,5 +1,5 @@
 <?php
-include_once("config/db.php");
+include_once("../config/db.php");
 
     if(isset($_GET['clear'])){
         global $conn;

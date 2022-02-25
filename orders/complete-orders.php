@@ -1,7 +1,7 @@
 <?php
   ob_start();
   session_start();
-  include_once("config/db.php");
+  include_once("../config/db.php");
   include_once('functions.php');
   $error = "";
 

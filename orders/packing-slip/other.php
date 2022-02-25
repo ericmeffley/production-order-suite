@@ -1,7 +1,7 @@
 <?php
   session_start();
   date_default_timezone_set('America/New_York');
-  include_once("../config/db.php");
+  include_once("../../config/db.php");
   include_once('../functions.php');
 ?>
 
